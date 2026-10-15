@@ -1,0 +1,121 @@
+<div class="max-w-2xl p-6 mx-auto mt-8 bg-white rounded-lg shadow">
+
+  <h1 class="mb-6 text-3xl font-bold text-gray-900">
+    Editar zodiaco
+  </h1>
+
+  <form class="max-w-sm mx-auto" [formGroup]="formulario">
+
+    <div class="mb-5">
+      <label for="nombre" class="block mb-2 text-sm font-medium text-gray-900">
+        Nombre
+      </label>
+      <input formControlName="nombre" type="text" id="nombre"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5">
+
+      <label for="Apaterno" class="block mt-3 mb-2 text-sm font-medium text-gray-900">
+        Apellido paterno
+      </label>
+      <input formControlName="Apaterno" type="text" id="Apaterno"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5">
+
+      <label for="Amaterno" class="block mt-3 mb-2 text-sm font-medium text-gray-900">
+        Apellido materno
+      </label>
+      <input formControlName="Amaterno" type="text" id="Amaterno"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5">
+
+      <label for="edad" class="block mt-5 mb-2 text-sm font-medium text-gray-900">
+        Edad
+      </label>
+      <input formControlName="edad" type="number" id="edad" min="0"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5">
+
+      <label for="horoscopo" class="block mt-3 mb-2 text-sm font-medium text-gray-900">
+        Horóscopo
+      </label>
+      <select formControlName="horoscopo" id="horoscopo"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5">
+        <option value="Rata">Rata</option>
+        <option value="Buey">Buey</option>
+        <option value="Tigre">Tigre</option>
+        <option value="Conejo">Conejo</option>
+        <option value="Dragon">Dragón</option>
+        <option value="Serpiente">Serpiente</option>
+        <option value="Caballo">Caballo</option>
+        <option value="Cabra">Cabra</option>
+        <option value="Mono">Mono</option>
+        <option value="Gallo">Gallo</option>
+        <option value="Perro">Perro</option>
+        <option value="Cerdo">Cerdo</option>
+      </select>
+
+      <div class="flex justify-center mt-6">
+        <button type="button" (click)="guardarCambios()"
+          class="px-4 py-2 text-sm font-medium text-white bg-blue-700 rounded-lg hover:bg-blue-800">
+          Imprimir
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div class="max-w-6xl p-6 mx-auto mt-8">
+
+  <h1 class="mb-6 text-3xl font-bold text-gray-900">
+    Lista de zodiacos
+  </h1>
+
+  <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <table class="w-full text-sm text-left text-gray-500">
+
+      <thead class="text-xs text-gray-700 uppercase bg-gray-100">
+        <tr>
+          <th class="px-6 py-3">Nombre completo</th>
+          <th class="px-6 py-3">Edad</th>
+          <th class="px-6 py-3">Horóscopo</th>
+          <th class="px-6 py-3">Acciones</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let zodiaco1 of zodiacos; let i = index"
+          class="bg-white border-b border-gray-200 hover:bg-gray-50">
+
+          <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+            {{ zodiaco1.nombre }} {{ zodiaco1.Apaterno }} {{ zodiaco1.Amaterno }}
+          </td>
+
+          <td class="px-6 py-4">
+            {{ zodiaco1.edad }}
+          </td>
+
+          <td class="px-6 py-4">
+            {{ zodiaco1.signo }}
+          </td>
+
+          <td class="px-6 py-4">
+            <div class="flex gap-2">
+              <button type="button" (click)="editarZodiaco(i)"
+                class="px-4 py-2 text-sm font-medium text-white bg-green-600 rounded-lg hover:bg-green-700">
+                Editar
+              </button>
+
+              <button type="button" (click)="eliminarZodiaco(i)"
+                class="px-4 py-2 text-sm font-medium text-white bg-red-600 rounded-lg hover:bg-red-700">
+                Eliminar
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="zodiacos.length === 0"
+    class="p-4 mt-4 text-sm text-gray-800 rounded-lg bg-gray-100"
+    role="alert">
+    <span class="font-medium">Información:</span>
+    No hay registros previos.
+  </div>
+</div>

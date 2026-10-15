@@ -7,5 +7,7 @@ export interface intZodiaco{
     ano:number,
     edad?:number
     animal?:string,
-    imagen?:string
+    imagen?:string,
+    sexo:string,
+    signo:string,
 }

@@ -15,22 +15,19 @@
 
                     <div class="flex items-center gap-2">
                         <label class="w-20 text-sm text-gray-700">Nombre</label>
-                        <input formControlName="nombre" type="text"
-                            name="nombre" placeholder="Nombre"
+                        <input formControlName="nombre" type="text" name="nombre" placeholder="Nombre"
                             class="bg-white border border-gray-400 text-gray-900 text-sm rounded-md block w-full p-1">
                     </div>
 
                     <div class="flex items-center gap-2">
                         <label class="w-20 text-sm text-gray-700">Apaterno</label>
-                        <input formControlName="Apaterno" type="text"
-                            name="Apaterno" placeholder="Apaterno"
+                        <input formControlName="Apaterno" type="text" name="Apaterno" placeholder="Apaterno"
                             class="bg-white border border-gray-400 text-gray-900 text-sm rounded-md block w-full p-1">
                     </div>
 
                     <div class="flex items-center gap-2">
                         <label class="w-20 text-sm text-gray-700">Amaterno</label>
-                        <input formControlName="Amaterno" type="text"
-                            name="Amaterno" placeholder="Amaterno"
+                        <input formControlName="Amaterno" type="text" name="Amaterno" placeholder="Amaterno"
                             class="bg-white border border-gray-400 text-gray-900 text-sm rounded-md block w-full p-1">
                     </div>
 
@@ -66,23 +63,20 @@
 
                     <label class="block text-sm text-gray-700">sexo</label>
 
-                    <div class="flex items-center gap-2 ml-10">
-                        <input type="radio" name="Femenino"
-                            formControlName="Femenino">
-                        <label class="text-sm">Femenino</label>
+                    <div class="flex items-center gap-4">
+                        <input type="radio" name="sexo" id="femenino" value="Femenino" formControlName="sexo">
+                        <label for="femenino" class="text-sm">Femenino</label>
                     </div>
 
-                    <div class="flex items-center gap-2 ml-10">
-                        <input type="radio" name="Masculino"
-                            formControlName="Masculino">
-                        <label class="text-sm">Masculino</label>
+                    <div class="flex items-center gap-4">
+                        <input type="radio" name="sexo" id="masculino" value="Masculino" formControlName="sexo">
+                        <label for="masculino" class="text-sm">Masculino</label>
                     </div>
 
                 </div>
 
                 <div class="mt-6 ml-5">
-                    <button type="button"
-                        (click)="muestraSigno()"
+                    <button type="button" (click)="muestraZodiaco()"
                         class="w-44 border-4 border-black bg-white text-black font-bold text-left px-3 py-1 hover:bg-gray-100">
                         Imprimir
                     </button>
@@ -93,40 +87,39 @@
         </div>
 
 
-        <!-- LÍNEA DIVISORIA CENTRAL -->
+
         <div class="hidden md:block w-1 bg-black mx-3"></div>
 
 
-        <!-- LADO DERECHO: RESULTADOS -->
-        <div class="w-full md:w-1/2 flex flex-col items-center justify-center text-center p-4">
 
-            <div [hidden]="!signo.animal">
+            <div class="w-full md:w-1/2 flex flex-col items-center justify-center text-center p-4">
 
-                <h3 class="mb-4 text-xl text-gray-800">
-                    Hola
-                    <strong class="italic">
-                        {{signo.nombre}} {{signo.Apaterno}} {{signo.Amaterno}}
-                    </strong>
-                </h3>
+                <div [hidden]="!signo">
 
-                <h3 class="mb-4 text-xl text-gray-800">
-                    Tienes <strong>{{signo.edad}}</strong> años
-                </h3>
-
-                <h3 class="mb-8 text-xl text-gray-800">
-                    tu signo zodiacal
-                </h3>
-
-                <div class="flex items-center justify-center gap-3">
-
-                    <h3 class="text-xl text-gray-800">
-                        Es {{signo.animal}}
+                    <h3 class="mb-4 text-xl text-gray-800">
+                        Hola
+                        <strong class="italic">
+                            {{signos.nombre}} {{signos.Apaterno}} {{signos.Amaterno}}
+                        </strong>
                     </h3>
 
-                    <img [src]="signo.imagen"
-                        width="80"
-                        height="80"
-                        class="w-20 h-20 rounded-full bg-indigo-700 object-contain">
+                    <h3 class="mb-4 text-xl text-gray-800">
+                        Tienes <strong>{{signos.edad}}</strong> años
+                    </h3>
+
+                    <h3 class="mb-8 text-xl text-gray-800">
+                    </h3>
+
+                    <div class="flex items-center justify-center gap-3">
+
+                        <h3 class="text-xl text-gray-800">
+                            {{signo}}
+                        </h3>
+
+                        <img [src]="imagen" width="80" height="80"
+                            class="w-20 h-20 rounded-full bg-indigo-700 object-contain">
+
+                    </div>
 
                 </div>
 
@@ -134,7 +127,108 @@
 
         </div>
 
+    <!--  <div class="max-w-6xl mx-auto mt-8">
+ 
+  <h2 class="mb-4 text-2xl font-bold text-gray-900">
+    Registro
+  </h2>
+  <div
+    class="relative overflow-x-auto shadow-md sm:rounded-lg">
+ 
+ 
+  </div> -->
+
+
+    <div class="max-w-6xl p-6 mx-auto mt-8">
+
+        <h1 class="mb-6 text-3xl font-bold text-gray-900">
+            Lista de zodiacos
+        </h1>
+
+        <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+
+            <table class="w-full text-sm text-left text-gray-500">
+
+                <thead class="text-xs text-gray-700 uppercase bg-gray-100">
+                    <tr>
+                        <th class="px-6 py-3">Nombre</th>
+                        <th class="px-6 py-3">Apellido paterno</th>
+                        <th class="px-6 py-3">Apellido materno</th>
+                        <th class="px-6 py-3">Edad</th>
+                        <th class="px-6 py-3">Fecha de nacimiento</th>
+                        <th class="px-6 py-3">Horóscopo chino</th>
+                        <th class="px-6 py-3">Sexo</th>
+                        <th class="px-6 py-3">Acciones</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <tr *ngFor="let zodiaco1 of zodiacos; let i = index"
+                        class="bg-white border-b border-gray-200 hover:bg-gray-50">
+
+                        <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                            {{ zodiaco1.nombre }}
+                        </td>
+
+                        <td class="px-6 py-4">
+                            {{ zodiaco1.Apaterno }}
+                        </td>
+
+                        <td class="px-6 py-4">
+                            {{ zodiaco1.Amaterno }}
+                        </td>
+
+                        <td class="px-6 py-4">
+                            {{ zodiaco1.edad }}
+                        </td>
+
+                        <td class="px-6 py-4">
+                            {{ zodiaco1.dia }}/{{ zodiaco1.mes }}/{{ zodiaco1.ano }}
+                        </td>
+
+                        <td class="px-6 py-4">
+                            {{ zodiaco1.signo }}
+                        </td>
+
+                        <td class="px-6 py-4">
+                            {{ zodiaco1.sexo }}
+                        </td>
+
+                        <td class="px-6 py-4">
+                            <div class="flex gap-2">
+
+                                <button type="button" (click)="editarDatos(i)"
+                                    class="px-4 py-2 text-sm font-medium text-white bg-green-600 rounded-lg hover:bg-green-700">
+                                    Editar
+                                </button>
+
+                                <button type="button" (click)="eliminarZodiaco(i)"
+                                    class="px-4 py-2 text-sm font-medium text-white bg-red-600 rounded-lg hover:bg-red-700">
+                                    Eliminar
+                                </button>
+
+                            </div>
+                        </td>
+
+                    </tr>
+
+                </tbody>
+            </table>
+
+        </div>
+
+        <div *ngIf="zodiacos.length === 0" class="p-4 mt-4 text-sm text-gray-800 rounded-lg bg-gray-100" role="alert">
+
+            <span class="font-medium">Información:</span>
+            No tan registraos.
+
+        </div>
+
     </div>
 
+
+
 </div>
-```
+
+<!-- </div> -->
